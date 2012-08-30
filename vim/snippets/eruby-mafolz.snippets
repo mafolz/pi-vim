@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+snippet form
+	<%= form_for(${1:}, ${2}) do |form| %>
+		${3}
+	<% end %><%# form_for $1 %>
+	
+snippet box
+	<%= box(t('${1:}')) do %>
+		${2}
+	<% end %><%# box $1 %>
+
+snippet form_div
+	<%= form_div do %>
+		${1}
+	<% end %><%# form_div %>
+
+snippet form_field
+	<%= form_field do %>
+		${1}
+	<% end %><%# form_field %>
