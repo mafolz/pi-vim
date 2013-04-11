@@ -18,6 +18,7 @@ set nocompatible
 " Bundle: git://github.com/ervandew/supertab.git
 " Bundle: git://github.com/hallettj/jslint.vim.git
 " BundleCommand: cd ~/.vim/bundle/jslint.vim && rake install
+" Bundle: git://github.com/timcharper/textile.vim.git
 
 colorscheme desert
 
@@ -52,7 +53,9 @@ set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/plugins/*,temp_gems/*,
 " Status bar
 set laststatus=2
 
-
+" Textile config
+let g:TextileOS="Linux"
+let g:TextileBrowser="chromium-browser"
 
 " Command-T configuration
 let g:CommandTMaxHeight=20
