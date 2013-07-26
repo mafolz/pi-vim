@@ -14,9 +14,12 @@ set nocompatible
 " Bundle: git://github.com/scrooloose/nerdcommenter.git
 " Bundle: git://github.com/wycats/nerdtree.git
 " Bundle: git://github.com/pangloss/vim-javascript.git
-" Bundle: git://github.com/msanders/snipmate.vim.git
+" Bundle: git://github.com/tomtom/tlib_vim.git                                          
+" Bundle: git://github.com/MarcWeber/vim-addon-mw-utils.git   
+" Bundle: git://github.com/garbas/vim-snipmate.git
 " Bundle: git://github.com/ervandew/supertab.git
 " Bundle: git://github.com/hallettj/jslint.vim.git
+" Bundle: git://github.com/bling/vim-airline.git
 " BundleCommand: cd ~/.vim/bundle/jslint.vim && rake install
 " Bundle: git://github.com/timcharper/textile.vim.git
 
@@ -48,7 +51,7 @@ set list listchars=tab:\ \ ,trail:·
 
 " Tab completion
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/plugins/*,temp_gems/*,
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/plugins/*,temp_gems/*,tmp/*,public/*,.bundler/*
 
 " Status bar
 set laststatus=2
