@@ -1,7 +1,19 @@
-   call pathogen#infect() 
+call pathogen#infect() 
 
 set shell=/bin/sh
 set nocompatible
+
+" Textile config
+let g:TextileOS="Linux"
+let g:TextileBrowser="chromium-browser"
+
+
+" Directories for swp files
+set backupdir=~/.vim/backup
+set directory=~/.vim/backup
+
+
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
 
 " Bundles for the vim plugins
 " Bundle: git://git.wincent.com/command-t.git
@@ -22,6 +34,9 @@ set nocompatible
 " Bundle: git://github.com/bling/vim-airline.git
 " BundleCommand: cd ~/.vim/bundle/jslint.vim && rake install
 " Bundle: git://github.com/timcharper/textile.vim.git
+"
+" Themes
+" Bundle: git://github.com/tomasr/molokai.git
 
 colorscheme desert
 
@@ -55,10 +70,9 @@ set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/plugins/*,temp_gems/*,t
 
 " Status bar
 set laststatus=2
+let g:airline_powerline_fonts=1
+let g:airline_enable_fugitive=1
 
-" Textile config
-let g:TextileOS="Linux"
-let g:TextileBrowser="chromium-browser"
 
 " Command-T configuration
 let g:CommandTMaxHeight=20
@@ -98,10 +112,6 @@ let g:syntastic_quiet_warnings=1
 set modeline
 set modelines=10
 
-" Directories for swp files
-set backupdir=~/.vim/backup
-set directory=~/.vim/backup
-
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
@@ -115,6 +125,7 @@ map <C-K> <C-W><C-K>
 map <leader>n :bn
 map <leader>p :bp
 map <C-S-X>  "+y
+map <C-S-V>  +gP
 
 " Vertical split right and split below
 set splitright
