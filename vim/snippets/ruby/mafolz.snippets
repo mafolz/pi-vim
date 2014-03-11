@@ -42,7 +42,7 @@ snippet cmod
 		${2}
 	end # $1
 
-snippet ccl
+snippet class
 	class ${1:}
 		${2}
 	end # $1
@@ -51,6 +51,21 @@ snippet map
 	map do |${1}|
 		$1
 	end # map
+
+snippet context
+	context '${1:}' do
+	${2:}
+	end # context '$1'
+
+snippet describe
+	describe '${1:}' do
+	${2:}
+	end # describe		  '$1'
+
+snippet define
+	def ${1:}
+	${2:}
+	end # def $1
 
 snippet kkom
 	##

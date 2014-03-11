@@ -2,5 +2,9 @@ Gemfile.lock
 vim/bundle
 vim/doc
 vim/.netrwhist
-vim/backup/*.swp
+vim/backup/*.s*
+vim/backup/.netrwhis*
+Trashed-Bundles
 vim/ftplugin
+.netrwhis*
+vimrc~
