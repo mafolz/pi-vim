@@ -37,6 +37,9 @@ set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
 "
 " Themes
 " Bundle: git://github.com/tomasr/molokai.git
+"
+"  https://bitbucket.org/ns9tks/vim-l9/get/tip.zip 
+" https://bitbucket.org/ns9tks/vim-fuzzyfinder/get/tip.zip 
 
 colorscheme desert
 
@@ -77,7 +80,6 @@ let g:airline_enable_fugitive=1
 " Command-T configuration
 let g:CommandTMaxHeight=20
 
-
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
 
@@ -88,6 +90,49 @@ au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
 au BufNewFile,BufRead *.json set ft=javascript
 
 au BufRead,BufNewFile *.txt call s:setupWrapping()
+
+" Open files with <leader>f
+" map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
+
+" Open files, limited to the directory of the current file, with <leader>gf
+" This requires the %% mapping found below.
+"map <leader>gf :CommandTFlush<cr>\|:CommandT %%<cr>
+
+" Open files limited to a specific rails-path
+map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
+map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
+map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
+map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
+map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
+map <leader>gp :CommandTFlush<cr>\|:CommandT public<cr>
+map <leader>gs :CommandTFlush<cr>\|:CommandT spec<cr>
+
+
+" FuzzyFinder
+"
+"
+let ignorefile = ".gitignore"
+if filereadable(ignorefile)
+
+
+  let ignore='\v\~$|\.(o|exe|dll|bak|orig|sw[po])$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
+  for line in readfile(ignorefile)
+    let line = substitute(line, '\.', '\\.', 'g')
+    let line = substitute(line, '\*', '.*', 'g')
+    let ignore .= '|^' . line
+  endfor
+
+  let g:fuf_coveragefile_exclude = ignore
+  let g:fuf_file_exclude = ignore
+  let g:fuf_dir_exclude = ignore
+endif
+"map <leader>f :FufCoverageFile<cr>
+map <leader>f :FufFile<cr>
+"map <leader>cm :FufFile<cr> app/models/
+"map <leader>cc :FufFile<cr> app/controllers/
+"map <leader>cs :FufFile<cr> spec/
+
+map <leader>l :FufLine<cr>
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -125,27 +170,11 @@ map <C-K> <C-W><C-K>
 map <leader>n :bn
 map <leader>p :bp
 map <C-S-X>  "+y
-map <C-S-V>  +gP
+"map <C-S-V>  +gP
 
 " Vertical split right and split below
 set splitright
 set splitbelow
-
-" Open files with <leader>f
-map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
-
-" Open files, limited to the directory of the current file, with <leader>gf
-" This requires the %% mapping found below.
-map <leader>gf :CommandTFlush<cr>\|:CommandT %%<cr>
-
-" Open files limited to a specific rails-path
-map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
-map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
-map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
-map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
-map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
-map <leader>gp :CommandTFlush<cr>\|:CommandT public<cr>
-map <leader>gs :CommandTFlush<cr>\|:CommandT spec<cr>
 
 " Starts the current spec
 map <leader>r :!rspec %<cr>
@@ -176,7 +205,7 @@ let g:bufExplorerSortBy='mru'
 let g:JSLintHighlightErrorLine = 0 
 " VIM 7.3+ has support for highlighting a specified column.
 if exists('+colorcolumn')
-    set colorcolumn=100
+    set colorcolumn=140
 else
     " Emulate
     au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%85v.\+', -1)
