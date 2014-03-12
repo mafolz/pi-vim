@@ -11,10 +11,8 @@ snippet pry
 	puts "#{__FILE__}:#{__LINE__}
 	binding.pry
 
-snippet mkom
+snippet mcom
 	##
-	# == Autor
-	# * mailto:folz@avarteq.de
 	# ${1}
 	#
 	# == Parameter
@@ -63,19 +61,15 @@ snippet describe
 	end # describe		  '$1'
 
 snippet define
-	def ${1:}
-	${2:}
-	end # def $1
+	def ${1:}${2}
+		${3}
+	end # $1
 
-snippet kkom
+snippet com
 	##
-	# == Autor
-	# * mailto:folz@avarteq.de
 	# ${1}
 	#
-	# == Changelog
-	# * ${2}
-	#
+	${2}
 
 snippet rdl
 	Rails.logger.info ${1}
