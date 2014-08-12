@@ -16,8 +16,7 @@ set directory=~/.vim/backup
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
 
 " Bundles for the vim plugins
-" Bundle: git://git.wincent.com/command-t.git
-" BundleCommand: cd ~/.vim/bundle/command-t && rake make
+" Bundle: git://github.com/kien/ctrlp.vim.git
 " Bundle: git://github.com/mileszs/ack.vim.git
 " Bundle: git://github.com/firat/vim-bufexplorer.git
 " Bundle: git://github.com/tpope/vim-rails.git
@@ -30,10 +29,9 @@ set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
 " Bundle: git://github.com/MarcWeber/vim-addon-mw-utils.git   
 " Bundle: git://github.com/garbas/vim-snipmate.git
 " Bundle: git://github.com/ervandew/supertab.git
-" Bundle: git://github.com/hallettj/jslint.vim.git
 " Bundle: git://github.com/bling/vim-airline.git
-" BundleCommand: cd ~/.vim/bundle/jslint.vim && rake install
 " Bundle: git://github.com/timcharper/textile.vim.git
+" Bundle: git://github.com/kchmck/vim-coffee-script.git
 "
 " Themes
 " Bundle: git://github.com/tomasr/molokai.git
@@ -99,40 +97,38 @@ au BufRead,BufNewFile *.txt call s:setupWrapping()
 "map <leader>gf :CommandTFlush<cr>\|:CommandT %%<cr>
 
 " Open files limited to a specific rails-path
-map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
-map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
-map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
-map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
-map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
-map <leader>gp :CommandTFlush<cr>\|:CommandT public<cr>
-map <leader>gs :CommandTFlush<cr>\|:CommandT spec<cr>
+"map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
+"map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
+"map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
+"map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
+"map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
+"map <leader>gp :CommandTFlush<cr>\|:CommandT public<cr>
+"map <leader>gs :CommandTFlush<cr>\|:CommandT spec<cr>
 
 
 " FuzzyFinder
 "
 "
-let ignorefile = ".gitignore"
-if filereadable(ignorefile)
+"let ignorefile = ".gitignore"
+"if filereadable(ignorefile)
 
-
-  let ignore='\v\~$|\.(o|exe|dll|bak|orig|sw[po])$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
-  for line in readfile(ignorefile)
-    let line = substitute(line, '\.', '\\.', 'g')
-    let line = substitute(line, '\*', '.*', 'g')
-    let ignore .= '|^' . line
-  endfor
-
-  let g:fuf_coveragefile_exclude = ignore
-  let g:fuf_file_exclude = ignore
-  let g:fuf_dir_exclude = ignore
-endif
+"  let ignore='\v\~$|\.(o|exe|dll|bak|orig|sw[po])$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
+"  for line in readfile(ignorefile)
+"    let line = substitute(line, '\.', '\\.', 'g')
+"    let line = substitute(line, '\*', '.*', 'g')
+"    let ignore .= '|^' . line
+"  endfor
+"
+"  let g:fuf_coveragefile_exclude = ignore
+"  let g:fuf_file_exclude = ignore
+"  let g:fuf_dir_exclude = ignore
+"endif
 "map <leader>f :FufCoverageFile<cr>
-map <leader>f :FufFile<cr>
+"map <leader>f :FufFile<cr>
 "map <leader>cm :FufFile<cr> app/models/
 "map <leader>cc :FufFile<cr> app/controllers/
 "map <leader>cs :FufFile<cr> spec/
-
-map <leader>l :FufLine<cr>
+"map <leader>l :FufLine<cr>
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -202,7 +198,6 @@ let g:bufExplorerSortBy='mru'
 
 
 " set line limit bar
-let g:JSLintHighlightErrorLine = 0 
 " VIM 7.3+ has support for highlighting a specified column.
 if exists('+colorcolumn')
     set colorcolumn=140

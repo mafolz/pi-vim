@@ -8,7 +8,7 @@ snippet trenner
 
 snippet pry
 	puts "#{ '$' * 45}DEBUGGER"
-	puts "#{__FILE__}:#{__LINE__}
+	puts "#{__FILE__}:#{__LINE__}"
 	binding.pry
 
 snippet mcom
@@ -27,8 +27,8 @@ snippet mcom
 
 snippet cdef
 	def ${1:}${2}
-		${3}
-	end # $1
+		${4}
+	end # ${3}$1
 
 snippet cself
 	class << self
@@ -62,15 +62,13 @@ snippet describe
 
 snippet define
 	def ${1:}${2}
-		${3}
-	end # $1
+		${4}
+	end # ${3}$1
 
 snippet com
 	##
 	# ${1}
 	#
-	${2}
-
 snippet rdl
 	Rails.logger.info ${1}
 
