@@ -14,6 +14,8 @@ if has('win32') || has('win64')
   " vundle support
   set rtp+=$HOME/_vim/bundle/Vundle.vim
 
+  let path='~/_vim/bundle'
+  call vundle#begin(path)
 else
 
   call pathogen#infect() 
@@ -32,6 +34,8 @@ else
   " vundle support
   set rtp+=~/.vim/bundle/Vundle.vim
 
+  call vundle#begin()
+
 endif
 
 
@@ -39,10 +43,10 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 
-call vundle#begin()
 
 " Bundles for the vim plugins
-Plugin 'gmarik/Vundle.vim'
+" Dont load vundle!
+" Plugin 'gmarik/Vundle.vim'
 Plugin 'git://github.com/kien/ctrlp.vim.git'
 Plugin 'git://github.com/mileszs/ack.vim.git'
 Plugin 'git://github.com/firat/vim-bufexplorer.git'
@@ -59,7 +63,7 @@ Plugin 'git://github.com/ervandew/supertab.git'
 Plugin 'git://github.com/bling/vim-airline.git'
 Plugin 'git://github.com/timcharper/textile.vim.git'
 Plugin 'git://github.com/kchmck/vim-coffee-script.git'
-"  Plugin 'taglist.vim'
+Plugin 'taglist.vim'
 "
 " Themes
 Plugin 'git://github.com/tomasr/molokai.git'
@@ -204,7 +208,7 @@ let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
 " Buff Explorere
 map <leader>b :BufExplorer<CR>
-map <leader><F12> :BufExplorer<CR>
+map <F12> :BufExplorer<CR>
 let g:bufExplorerSortBy='mru'
 
 
