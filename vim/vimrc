@@ -130,6 +130,13 @@ au BufRead,BufNewFile *.txt call s:setupWrapping()
 "map <leader>cs :FufFile<cr> spec/
 "map <leader>l :FufLine<cr>
 
+" CtrlP config
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.orig,*.org,*.jpg,*.png,*.gif,*.svg,*.swf,*.mp4*,*.flv
+let g:ctrlp_custom_ignore = {
+      \'dir':  '\v[\/]((\.(git|hg|svn))|public|tmp|temp|log|logs)$',
+      \'file': '\v\.(exe|so|dll)$'
+      \}
+
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
