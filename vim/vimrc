@@ -1,43 +1,70 @@
-call pathogen#infect() 
 
-set shell=/bin/sh
-set nocompatible
+if has('win32') || has('win64')
+  set runtimepath=$HOME/_vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/_vim/after
 
-" Textile config
-let g:TextileOS="Linux"
-let g:TextileBrowser="chromium-browser"
+  call pathogen#infect() 
+
+  " Textile config
+  let g:TextileOS="Windows"
+  let g:TextileBrowser="explorer.exe"
+  
+  set guifont=DejaVu_Sans_Mono_for_Powerline:h9:cANSI
+  set backupdir=$HOME/_vim/backup
+  set directory=$HOME/_vim/backup
+  " vundle support
+  set rtp+=$HOME/_vim/bundle/Vundle.vim
+
+else
+
+  call pathogen#infect() 
+  set shell=/bin/sh
+
+  " Textile config
+  let g:TextileOS="Linux"
+  let g:TextileBrowser="chromium-browser"
+
+  set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
+
+  " Directories for swp files
+  set backupdir=~/.vim/backup
+  set directory=~/.vim/backup
+
+  " vundle support
+  set rtp+=~/.vim/bundle/Vundle.vim
+
+endif
 
 
-" Directories for swp files
-set backupdir=~/.vim/backup
-set directory=~/.vim/backup
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
 
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
+call vundle#begin()
 
 " Bundles for the vim plugins
-" Bundle: git://github.com/kien/ctrlp.vim.git
-" Bundle: git://github.com/mileszs/ack.vim.git
-" Bundle: git://github.com/firat/vim-bufexplorer.git
-" Bundle: git://github.com/tpope/vim-rails.git
-" Bundle: git://github.com/tpope/vim-git.git
-" Bundle: git://github.com/tpope/vim-fugitive.git
-" Bundle: git://github.com/scrooloose/nerdcommenter.git
-" Bundle: git://github.com/wycats/nerdtree.git
-" Bundle: git://github.com/pangloss/vim-javascript.git
-" Bundle: git://github.com/tomtom/tlib_vim.git                                          
-" Bundle: git://github.com/MarcWeber/vim-addon-mw-utils.git   
-" Bundle: git://github.com/garbas/vim-snipmate.git
-" Bundle: git://github.com/ervandew/supertab.git
-" Bundle: git://github.com/bling/vim-airline.git
-" Bundle: git://github.com/timcharper/textile.vim.git
-" Bundle: git://github.com/kchmck/vim-coffee-script.git
+Plugin 'gmarik/Vundle.vim'
+Plugin 'git://github.com/kien/ctrlp.vim.git'
+Plugin 'git://github.com/mileszs/ack.vim.git'
+Plugin 'git://github.com/firat/vim-bufexplorer.git'
+Plugin 'git://github.com/tpope/vim-rails.git'
+Plugin 'git://github.com/tpope/vim-git.git'
+Plugin 'git://github.com/tpope/vim-fugitive.git'
+Plugin 'git://github.com/scrooloose/nerdcommenter.git'
+Plugin 'git://github.com/wycats/nerdtree.git'
+Plugin 'git://github.com/pangloss/vim-javascript.git'
+Plugin 'git://github.com/tomtom/tlib_vim.git'
+Plugin 'git://github.com/MarcWeber/vim-addon-mw-utils.git'
+Plugin 'git://github.com/garbas/vim-snipmate.git'
+Plugin 'git://github.com/ervandew/supertab.git'
+Plugin 'git://github.com/bling/vim-airline.git'
+Plugin 'git://github.com/timcharper/textile.vim.git'
+Plugin 'git://github.com/kchmck/vim-coffee-script.git'
+"  Plugin 'taglist.vim'
 "
 " Themes
-" Bundle: git://github.com/tomasr/molokai.git
-"
-"  https://bitbucket.org/ns9tks/vim-l9/get/tip.zip 
-" https://bitbucket.org/ns9tks/vim-fuzzyfinder/get/tip.zip 
+Plugin 'git://github.com/tomasr/molokai.git'
+
+call vundle#end()
 
 colorscheme desert
 
@@ -74,61 +101,38 @@ set laststatus=2
 let g:airline_powerline_fonts=1
 let g:airline_enable_fugitive=1
 
-
-" Command-T configuration
-let g:CommandTMaxHeight=20
+" own syntax definitions
 
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
-au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
+au BufRead,BufNewFile {Guardfile,Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
 
 " md, markdown, and mk are markdown and define buffer-local preview
-au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
+"au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
 
 " add json syntax highlighting
-au BufNewFile,BufRead *.json set ft=javascript
+au BufNewFile,BufRead *.{json,node} set ft=javascript
+
+" arduino 
+au BufNewFile,BufRead *.ino set ft=cpp
 
 au BufRead,BufNewFile *.txt call s:setupWrapping()
 
 " Open files with <leader>f
-" map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
+map <leader>f :CtrlP<cr>
 
 " Open files, limited to the directory of the current file, with <leader>gf
 " This requires the %% mapping found below.
-"map <leader>gf :CommandTFlush<cr>\|:CommandT %%<cr>
+map <leader>gf :CtrlP %%<cr>
 
 " Open files limited to a specific rails-path
-"map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
-"map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
-"map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
-"map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
-"map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
-"map <leader>gp :CommandTFlush<cr>\|:CommandT public<cr>
-"map <leader>gs :CommandTFlush<cr>\|:CommandT spec<cr>
+map <leader>gv :CtrlP app/views<cr>
+map <leader>gc :CtrlP app/controllers<cr>
+map <leader>gm :CtrlP app/models<cr>
+map <leader>gh :CtrlP app/helpers<cr>
+map <leader>gl :CtrlP lib<cr>
+map <leader>gp :CtrlP public<cr>
+map <leader>gs :CtrlP spec<cr>
 
-
-" FuzzyFinder
-"
-"
-"let ignorefile = ".gitignore"
-"if filereadable(ignorefile)
-
-"  let ignore='\v\~$|\.(o|exe|dll|bak|orig|sw[po])$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
-"  for line in readfile(ignorefile)
-"    let line = substitute(line, '\.', '\\.', 'g')
-"    let line = substitute(line, '\*', '.*', 'g')
-"    let ignore .= '|^' . line
-"  endfor
-"
-"  let g:fuf_coveragefile_exclude = ignore
-"  let g:fuf_file_exclude = ignore
-"  let g:fuf_dir_exclude = ignore
-"endif
-"map <leader>f :FufCoverageFile<cr>
-"map <leader>f :FufFile<cr>
-"map <leader>cm :FufFile<cr> app/models/
-"map <leader>cc :FufFile<cr> app/controllers/
-"map <leader>cs :FufFile<cr> spec/
-"map <leader>l :FufLine<cr>
 
 " CtrlP config
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.orig,*.org,*.jpg,*.png,*.gif,*.svg,*.swf,*.mp4*,*.flv
@@ -172,8 +176,8 @@ map <C-K> <C-W><C-K>
 
 map <leader>n :bn
 map <leader>p :bp
-map <C-S-X>  "+y
-"map <C-S-V>  +gP
+map <leader>x  "+y
+map <leader>v  "+gP
 
 " Vertical split right and split below
 set splitright
@@ -217,3 +221,11 @@ endif
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
+
+if filereadable(expand("$HOME/_vimrc.local"))
+  source $HOME/_vimrc.local
+endif
+
+":set guioptions-=m  "remove menu bar
+:set guioptions-=T  "remove toolbar
+":set guioptions-=r  "remove right-hand scroll bar

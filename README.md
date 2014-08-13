@@ -1,20 +1,14 @@
 # Swvim
 
+This is a fork of [https://github.com/SweeD/swvim SwVim]
 Swvim is a little vim package. It's lightweight and optimized for rails development in terminal vim.
 
 ## Requirements
-You need a vim version with ruby interpreter enabled. (for Command-T)
-Also be sure that you have 256 colors enabled in your terminal.
 
-For example:
+Windows/Linux and Mac supported!
 
-```bash
-➜  ~  tput colors
-256
+* git into Search Path
 
-➜  ~  echo $TERM
-xterm-256color
-```
 
 ## Setup
 
@@ -23,23 +17,21 @@ home directory.
 
 Then do
 
-    git clone git@github.com:SweeD/swvim.git ~/.swvim
+    git clone git@github.com:mafolz/swvim.git ~/.swvim
     cd ~/.swvim
     ./install.sh
+    or ./install.bat
 
-Now you have to follow these steps to finish the installation:
-
-    gem install vim-update-bundles
-    vim-update-bundles
+Now open vim and type :PluginInstall
+If everything was correct configured, the installation will be successfully be done in 
+vim itself.
 
 And now you're ready to go!
 
+## Roadmap
+
+* find a plugin which replace ack.vim to support windows too.
 
 ## Customization
 
 You can add your own configurations in ~/.vimrc.local to customize the config to your needs.
-
-## Travis Build Status
-
-[![Build
-Status](https://secure.travis-ci.org/SweeD/swvim.png)](http://travis-ci.org/SweeD/swvim)
