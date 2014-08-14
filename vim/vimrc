@@ -211,6 +211,12 @@ map <leader>b :BufExplorer<CR>
 map <F12> :BufExplorer<CR>
 let g:bufExplorerSortBy='mru'
 
+" configure taglist.vim
+let Tlist_Use_Right_Window = 1
+let Tlist_Auto_Update = 1
+let Tlist_WinWidth = 50
+
+map <leader>m :TlistToggle<CR>
 
 " set line limit bar
 " VIM 7.3+ has support for highlighting a specified column.
