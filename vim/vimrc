@@ -55,7 +55,11 @@ Plugin 'git://github.com/tpope/vim-git.git'
 Plugin 'git://github.com/tpope/vim-fugitive.git'
 Plugin 'git://github.com/scrooloose/nerdcommenter.git'
 Plugin 'git://github.com/wycats/nerdtree.git'
-Plugin 'git://github.com/pangloss/vim-javascript.git'
+"Plugin 'git://github.com/pangloss/vim-javascript.git'
+"Javascript
+Plugin 'git://github.com/othree/yajs.vim.git'
+Plugin 'git://github.com/scrooloose/syntastic.git'
+
 Plugin 'git://github.com/tomtom/tlib_vim.git'
 Plugin 'git://github.com/MarcWeber/vim-addon-mw-utils.git'
 Plugin 'git://github.com/garbas/vim-snipmate.git'
@@ -63,6 +67,7 @@ Plugin 'git://github.com/ervandew/supertab.git'
 Plugin 'git://github.com/bling/vim-airline.git'
 Plugin 'git://github.com/timcharper/textile.vim.git'
 Plugin 'git://github.com/kchmck/vim-coffee-script.git'
+Plugin 'git://github.com/chrisbra/vim-diff-enhanced.git'
 Plugin 'taglist.vim'
 "
 " Themes
@@ -160,9 +165,6 @@ map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 " Command mode: Ctrl+P
 cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 
-" Enable syntastic syntax checking
-let g:syntastic_enable_signs=1
-let g:syntastic_quiet_warnings=1
 
 " Use modeline overrides
 set modeline
@@ -239,3 +241,16 @@ endif
 ":set guioptions-=m  "remove menu bar
 :set guioptions-=T  "remove toolbar
 ":set guioptions-=r  "remove right-hand scroll bar
+"
+"
+"Syntax Checker
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+" Enable syntastic syntax checking
+"let g:syntastic_enable_signs=1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
