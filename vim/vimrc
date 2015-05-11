@@ -2,12 +2,12 @@
 if has('win32') || has('win64')
   set runtimepath=$HOME/_vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/_vim/after
 
-  call pathogen#infect() 
+  call pathogen#infect()
 
   " Textile config
   let g:TextileOS="Windows"
   let g:TextileBrowser="explorer.exe"
-  
+
   set guifont=DejaVu_Sans_Mono_for_Powerline:h9:cANSI
   set backupdir=$HOME/_vim/backup
   set directory=$HOME/_vim/backup
@@ -16,9 +16,12 @@ if has('win32') || has('win64')
 
   let path='~/_vim/bundle'
   call vundle#begin(path)
+
+  " ack grep
+  let g:ackprg="echo 'not supported atm'"
 else
 
-  call pathogen#infect() 
+  call pathogen#infect()
   set shell=/bin/sh
 
   " Textile config
@@ -36,6 +39,8 @@ else
 
   call vundle#begin()
 
+  " ack grep
+  let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 endif
 
 
@@ -55,9 +60,9 @@ Plugin 'git://github.com/tpope/vim-git.git'
 Plugin 'git://github.com/tpope/vim-fugitive.git'
 Plugin 'git://github.com/scrooloose/nerdcommenter.git'
 Plugin 'git://github.com/wycats/nerdtree.git'
-"Plugin 'git://github.com/pangloss/vim-javascript.git'
 "Javascript
 Plugin 'git://github.com/othree/yajs.vim.git'
+"Display synax errors
 Plugin 'git://github.com/scrooloose/syntastic.git'
 
 Plugin 'git://github.com/tomtom/tlib_vim.git'
@@ -67,15 +72,14 @@ Plugin 'git://github.com/ervandew/supertab.git'
 Plugin 'git://github.com/bling/vim-airline.git'
 Plugin 'git://github.com/timcharper/textile.vim.git'
 Plugin 'git://github.com/kchmck/vim-coffee-script.git'
-Plugin 'git://github.com/chrisbra/vim-diff-enhanced.git'
 Plugin 'taglist.vim'
 "
 " Themes
-Plugin 'git://github.com/tomasr/molokai.git'
+Plugin 'git://github.com/sickill/vim-monokai.git'
 
 call vundle#end()
 
-colorscheme desert
+colorscheme monokai
 
 " Leader setting
 let mapleader = ","
@@ -116,12 +120,12 @@ let g:airline_enable_fugitive=1
 au BufRead,BufNewFile {Guardfile,Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
 
 " md, markdown, and mk are markdown and define buffer-local preview
-"au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
+au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
 
 " add json syntax highlighting
 au BufNewFile,BufRead *.{json,node} set ft=javascript
 
-" arduino 
+" arduino
 au BufNewFile,BufRead *.ino set ft=cpp
 
 au BufRead,BufNewFile *.txt call s:setupWrapping()
@@ -204,8 +208,6 @@ map <Leader>n :NERDTreeToggle<CR>
 map <F8> :!ctags -R .<CR>
 
 
-" ack grep
-let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
 
 " Buff Explorere
