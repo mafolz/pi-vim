@@ -1,7 +1,7 @@
 # PI-Vim
-Platform Independend Vim Distribution.
+Platform Independent Vim Distribution.
 
-This is a fork of [[https://github.com/SweeD/swvim SwVim]] bun was changed a lot to run on all
+This is a fork of [https://github.com/SweeD/swvim SwVim] but was changed a lot to run on all
 common OS and minimize the external dependencies to the environment.
 
 Swvim is a little vim package. It's lightweight and optimized for rails development in terminal vim.
@@ -19,7 +19,7 @@ Check this into Mac/Linux/Unix int your terminal or in Windows via Powershell or
 ### Windows Reqirement
 
 We ned junction to make a hardlink from a folder.
-So download [[https://technet.microsoft.com/de-de/sysinternals/bb896768.aspx Junction]] and make it accessible to your search path.
+So download [https://technet.microsoft.com/de-de/sysinternals/bb896768.aspx Junction] and make it accessible to your search path.
 
 ## Setup
 

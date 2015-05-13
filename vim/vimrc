@@ -72,10 +72,13 @@ Plugin 'git://github.com/ervandew/supertab.git'
 Plugin 'git://github.com/bling/vim-airline.git'
 Plugin 'git://github.com/timcharper/textile.vim.git'
 Plugin 'git://github.com/kchmck/vim-coffee-script.git'
+" provides  a method tree per file
 Plugin 'taglist.vim'
 "
 " Themes
 Plugin 'git://github.com/sickill/vim-monokai.git'
+" Invertable color theme
+Plugin 'git://github.com/noahfrederick/vim-hemisu.git'
 
 call vundle#end()
 
@@ -120,7 +123,7 @@ let g:airline_enable_fugitive=1
 au BufRead,BufNewFile {Guardfile,Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
 
 " md, markdown, and mk are markdown and define buffer-local preview
-au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
+"au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
 
 " add json syntax highlighting
 au BufNewFile,BufRead *.{json,node} set ft=javascript
@@ -151,7 +154,7 @@ map <leader>gs :CtrlP spec<cr>
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.orig,*.org,*.jpg,*.png,*.gif,*.svg,*.swf,*.mp4*,*.flv
 let g:ctrlp_custom_ignore = {
       \'dir':  '\v[\/]((\.(git|hg|svn))|public|tmp|temp|log|logs)$',
-      \'file': '\v\.(exe|so|dll)$'
+      \'file': '\v\.(exe|so|dll|orig)$'
       \}
 
 " allow backspacing over everything in insert mode
@@ -199,8 +202,8 @@ map <leader>r :!rspec %<cr>
 
 " NERDTree - toggle
 " Open the current buffer in the NERDTree
-map <C-N> :NERDTreeFind<cr>
-map <F2> :NERDTree<CR>
+"map <C-N> :NERDTreeFind<cr>
+map <F2> :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\.rbc$', '\~$']
 map <Leader>n :NERDTreeToggle<CR>
 
@@ -216,19 +219,22 @@ map <F12> :BufExplorer<CR>
 let g:bufExplorerSortBy='mru'
 
 " configure taglist.vim
-let Tlist_Use_Right_Window = 1
+let Tlist_Compact_Format = 1
+let Tlist_Use_Right_Window = 0
 let Tlist_Auto_Update = 1
 let Tlist_WinWidth = 50
 
+" Displays the tag list, this is a list of used Methods/constants which are
+" currently open into vim
 map <leader>m :TlistToggle<CR>
 
 " set line limit bar
 " VIM 7.3+ has support for highlighting a specified column.
 if exists('+colorcolumn')
-    set colorcolumn=140
+  set colorcolumn=140
 else
-    " Emulate
-    au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%85v.\+', -1)
+  " Emulate
+  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%85v.\+', -1)
 endif
 
 " Include user's local vim config
@@ -246,13 +252,13 @@ endif
 "
 "
 "Syntax Checker
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
 " Enable syntastic syntax checking
-"let g:syntastic_enable_signs=1
+let g:syntastic_enable_signs=1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
