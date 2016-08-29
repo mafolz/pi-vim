@@ -41,9 +41,12 @@ else
 
   " ack grep
   let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+  let g:syntastic_ruby_mri_exec='/home/mafolz/.rvm/rubies/ruby-2.0.0-p598/bin/ruby '
 endif
 
-
+if executable('ag')
+  let g:ackprg = 'ag --nocolor --column'
+endif
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -68,25 +71,33 @@ Plugin 'git://github.com/scrooloose/syntastic.git'
 Plugin 'git://github.com/tomtom/tlib_vim.git'
 Plugin 'git://github.com/MarcWeber/vim-addon-mw-utils.git'
 Plugin 'git://github.com/garbas/vim-snipmate.git'
-Plugin 'git://github.com/ervandew/supertab.git'
 Plugin 'git://github.com/bling/vim-airline.git'
 Plugin 'git://github.com/timcharper/textile.vim.git'
-Plugin 'git://github.com/kchmck/vim-coffee-script.git'
 " provides  a method tree per file
 Plugin 'taglist.vim'
+Plugin 'git://github.com/ervandew/supertab.git'
+" Really Beta...
+"Plugin 'git://github.com/Valloric/YouCompleteMe.git'
 "
 " Themes
 Plugin 'git://github.com/sickill/vim-monokai.git'
 " Invertable color theme
 Plugin 'git://github.com/noahfrederick/vim-hemisu.git'
+Plugin 'git://github.com/mkarmona/materialbox.git'
+" light theme
+Plugin 'git://github.com/vim-scripts/summerfruit256.vim.git'
+Plugin 'git://github.com/vim-scripts/proton.git'
+
+Plugin 'git://github.com/yantze/pt_black.git'
 
 call vundle#end()
 
-colorscheme monokai
+colorscheme summerfruit256
 
 " Leader setting
 let mapleader = ","
 
+"set relativenumber
 set number
 set ruler
 syntax on
@@ -149,6 +160,9 @@ map <leader>gl :CtrlP lib<cr>
 map <leader>gp :CtrlP public<cr>
 map <leader>gs :CtrlP spec<cr>
 
+
+" Remove trailing space
+map <leader>cp :%s/\s\+$//<cr>
 
 " CtrlP config
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.orig,*.org,*.jpg,*.png,*.gif,*.svg,*.swf,*.mp4*,*.flv
@@ -220,7 +234,7 @@ let g:bufExplorerSortBy='mru'
 
 " configure taglist.vim
 let Tlist_Compact_Format = 1
-let Tlist_Use_Right_Window = 0
+let Tlist_Use_Right_Window = 1
 let Tlist_Auto_Update = 1
 let Tlist_WinWidth = 50
 
@@ -252,9 +266,9 @@ endif
 "
 "
 "Syntax Checker
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
 " Enable syntastic syntax checking
 let g:syntastic_enable_signs=1
@@ -262,3 +276,4 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
+" let g:syntastic_quiet_messages = { "type": "warning" }

@@ -28,7 +28,13 @@ snippet mcom
 snippet cdef
 	def ${1:}${2}
 		${4}
-	end # ${3}$1
+	end # .${3}$1
+
+snippet mdef
+	def ${1:}${2}
+		${4}
+	end # #${3}$1
+	
 
 snippet cself
 	class << self
@@ -59,6 +65,16 @@ snippet describe
 	describe '${1:}' do
 	${2:}
 	end # describe		  '$1'
+
+snippet cdescribe
+	describe '${1:}' do
+	${2:}
+	end # describe	'.$1'
+
+snippet mdescribe
+	describe '${1:}' do
+	${2:}
+	end # describe	'#$1'
 
 snippet define
 	def ${1:}${2}
